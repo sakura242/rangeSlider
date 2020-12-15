@@ -1,0 +1,26 @@
+{
+  "name": "dev-zenkosai",
+  "version": "1.0.0",
+  "description": "体験談管理画面",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.26.5",
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssmin": "^0.2.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-rimraf": "^0.2.2",
+    "gulp-sass": "^4.0.2",
+    "gulp-uglify": "^3.0.2",
+    "uglify-es": "^3.3.9"
+  },
+  "dependencies": {
+    "gulp-order": "^1.2.0"
+  }
+}
