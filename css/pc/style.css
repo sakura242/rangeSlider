@@ -238,6 +238,10 @@ div[class*="Box_"] {
   cursor: pointer;
 }
 
+.scoreBox_minMax {
+  pointer-events: none;
+}
+
 .scoreBox_minMax .js-score_min,
 .scoreBox_minMax .js-score_max {
   position: absolute;

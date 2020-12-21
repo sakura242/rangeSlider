@@ -229,6 +229,7 @@ div[class*="Box_"] {
   }
 }
 .scoreBox_minMax {
+  pointer-events: none;
   .js-score_min,
   .js-score_max {
     position: absolute;
