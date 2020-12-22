@@ -216,20 +216,6 @@ div[class*="Box_"] {
   position: relative;
 }
 
-.scoreBox_slider input::before {
-  content: attr(min);
-  position: absolute;
-  top: 4px;
-  left: 8px;
-}
-
-.scoreBox_slider input::after {
-  content: attr(max);
-  position: absolute;
-  top: 4px;
-  right: 8px;
-}
-
 .scoreBox_slider .fas {
   font-size: 20px;
 }
@@ -301,6 +287,11 @@ div[class*="Box_"] {
 
 #scoreSlider {
   margin-top: 100px;
+}
+
+#scoreSlider .rangeBox_minText,
+#scoreSlider .rangeBox_maxText {
+  pointer-events: none;
 }
 
 #scoreSlider .block_body {

@@ -293,10 +293,6 @@ $(function () {
       score = 40;
     scoreSliderChange($this);
   });
-
-
-
-
   //教室使用率
   //パーセンテージを求める(小数点以下切り捨て)
   function calc_rate() {
@@ -333,7 +329,7 @@ $(function () {
     add_count_text($(this));
     chenge_count_val($(this));
   });
-  //chart.js
+  ///////////////////////////////////////chart.js///////////////////////////////////////
   var ctx = document.getElementById('ex_chart');
   var data = {
     labels: ["国語", "数学", "英語", "社会", "理科"],

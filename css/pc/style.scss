@@ -209,18 +209,19 @@ div[class*="Box_"] {
     margin: 0 10px;
     position: relative;
   }
-  input::before {
-    content: attr(min);
-    position: absolute;
-    top: 4px;
-    left: 8px;
-  }
-  input::after {
-    content: attr(max);
-    position: absolute;
-    top: 4px;
-    right: 8px;
-  }
+  //inputに疑似要素は付けられない
+  // input::before {
+  //   content: attr(min);
+  //   position: absolute;
+  //   top: 4px;
+  //   left: 8px;
+  // }
+  // input::after {
+  //   content: attr(max);
+  //   position: absolute;
+  //   top: 4px;
+  //   right: 8px;
+  // }
   .fas {
     font-size: 20px;
   }
@@ -281,6 +282,10 @@ div[class*="Box_"] {
   }
 }
 #scoreSlider {
+  .rangeBox_minText,
+  .rangeBox_maxText{
+    pointer-events: none;
+  }
   // 変更点
   margin-top: 100px;
   // 変更点
