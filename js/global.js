@@ -46,124 +46,216 @@ $(function () {
   // inputイベント強制的に発動
   //何故かこれだけでIEにも効いてる
   $sliderBox.trigger('input');
-
   //点数1
   //関数を用意
-  function scoreSliderChange_A(scoreBox) {
+  // function changeScoreSlider_A(scoreBox) {
+  //   //「現在のレベル」の位置を設定
+  //   percent = (score - min) / (max - min) * 100;
+  //   scoreBox.find('.scoreBox_score_insert').css({
+  //     'left': percent + '%'
+  //   });
+  //   //テキスト書き換え
+  //   //最小値最大値は疑似要素で表示するので使わない?
+  //   scoreBox.find('.js-score_min').text(min);
+  //   scoreBox.find('.js-score_max').text(max);
+  //   scoreBox.find('.js-score_score').text(score);
+  //   //最小値、最大値、スコアを変更
+  //   scoreBox.find('input').attr('min', min);
+  //   scoreBox.find('input').attr('max', max);
+  //   scoreBox.find('input').val(score);
+  //   //スライダーを変更した時の処理
+  //   scoreBox.on('input', function () {
+  //     //スコアを取得
+  //     var score = scoreBox.find('input').val();
+  //     //スコアのテキストを書き換え
+  //     scoreBox.find('.js-score_score').text(score);
+  //     //「現在のレベル」の位置を再設定
+  //     //最小値、最大値取得(外で取得すると一番最後のscoreBoxの値を取得してしまう)
+  //     var min = scoreBox.find('input').attr('min');
+  //     var max = scoreBox.find('input').attr('max');
+  //     percent = (score - min) / (max - min) * 100;
+  //     scoreBox.find('.scoreBox_score_insert').css({
+  //       'left': percent + '%'
+  //     });
+  //   });
+  //   //IE 11のときの挙動
+  //   const ua = navigator.userAgent;
+  //   if (ua.indexOf('Trident') !== -1) {
+  //     scoreBox.change(function () {
+  //       var score = scoreBox.find('input').val();
+  //       scoreBox.find('.js-score_score').text(score);
+  //       var min = scoreBox.find('input').attr('min');
+  //       var max = scoreBox.find('input').attr('max');
+  //       percent = (score - min) / (max - min) * 100;
+  //       scoreBox.find('.scoreBox_score_insert').css({
+  //         'left': percent + '%'
+  //       });
+  //     });
+  //   }
+  //   //プラスをクリックした時
+  //   scoreBox.find('.js-plus').on('click', function () {
+  //     //最小値、最大値取得(外で取得すると一番最後の値を取得してしまう)
+  //     var min = scoreBox.find('input').attr('min');
+  //     var max = scoreBox.find('input').attr('max');
+  //     //スコアを取得
+  //     var score = scoreBox.find('input').val();
+  //     //スコアを数列へ変換(+以外の算術演算子を使うと自動で数列になるのでマイナスの時は不要)
+  //     var score = parseInt(score);
+  //     var score_plus = score + 1;
+  //     //スコア+1が最小値以上、最大値以下のとき
+  //     if (score_plus >= min && score_plus <= max) {
+  //       //スコアのテキスト書き換え
+  //       scoreBox.find('.js-score_score').text(score_plus);
+  //       //スコアの値を変更
+  //       scoreBox.find('input').val(score_plus);
+  //       //「現在のレベル」の位置を再設定
+  //       percent = (score_plus - min) / (max - min) * 100;
+  //       scoreBox.find('.scoreBox_score_insert').css({
+  //         'left': percent + '%'
+  //       });
+  //     }
+  //   });
+  //   //マイナスをクリックした時
+  //   scoreBox.find('.js-minus').on('click', function () {
+  //     //最小値、最大値取得(外で取得すると一番最後の値を取得してしまう)
+  //     var min = scoreBox.find('input').attr('min');
+  //     var max = scoreBox.find('input').attr('max');
+  //     //スコアを取得
+  //     var score = scoreBox.find('input').val();
+  //     var score_minus = score - 1;
+  //     //スコア-1が最小値以上、最大値以下のとき
+  //     if (score_minus >= min && score_minus <= max) {
+  //       //スコアのテキスト書き換え
+  //       scoreBox.find('.js-score_score').text(score_minus);
+  //       //スコアの値を変更
+  //       scoreBox.find('input').val(score_minus);
+  //       //「現在のレベル」の位置を再設定
+  //       percent = (score_minus - min) / (max - min) * 100;
+  //       scoreBox.find('.scoreBox_score_insert').css({
+  //         'left': percent + '%'
+  //       });
+  //     }
+  //   });
+  // }
+  // $('.js-scoreBox-a').each(function () {
+  //   var $this = $(this);
+  //   min = 0,
+  //     max = 100,
+  //     score = 23;
+  //   changeScoreSlider_A($this);
+  // });
+
+  // $('.js-scoreBox-b').each(function () {
+  //   var $this = $(this);
+  //   min = 0,
+  //     max = 100,
+  //     score = 40;
+  //   changeScoreSlider_A($this);
+  // });
+
+  // $('.js-scoreBox-c').each(function () {
+  //   var $this = $(this);
+  //   min = 20,
+  //     max = 80,
+  //     score = 59;
+  //   changeScoreSlider_A($this);
+  // });
+  //関数を変数に入れるやり方
+  var changeScoreSlider = function (box, min, max, score) {
     //「現在のレベル」の位置を設定
     percent = (score - min) / (max - min) * 100;
-    scoreBox.find('.scoreBox_score_insert').css({
+    box.find('.scoreBox_score_insert').css({
       'left': percent + '%'
     });
     //テキスト書き換え
     //最小値最大値は疑似要素で表示するので使わない?
-    scoreBox.find('.js-score_min').text(min);
-    scoreBox.find('.js-score_max').text(max);
-    scoreBox.find('.js-score_score').text(score);
+    box.find('.js-score_min').text(min);
+    box.find('.js-score_max').text(max);
+    box.find('.js-score_score').text(score);
     //最小値、最大値、スコアを変更
-    scoreBox.find('input').attr('min', min);
-    scoreBox.find('input').attr('max', max);
-    scoreBox.find('input').val(score);
+    box.find('input').attr('min', min);
+    box.find('input').attr('max', max);
+    box.find('input').val(score);
     //スライダーを変更した時の処理
-    scoreBox.on('input', function () {
+    box.on('input', function () {
       //スコアを取得
-      var score = scoreBox.find('input').val();
+      var score = box.find('input').val();
       //スコアのテキストを書き換え
-      scoreBox.find('.js-score_score').text(score);
+      box.find('.js-score_score').text(score);
       //「現在のレベル」の位置を再設定
-      //最小値、最大値取得(外で取得すると一番最後のscoreBoxの値を取得してしまう)
-      var min = scoreBox.find('input').attr('min');
-      var max = scoreBox.find('input').attr('max');
+      //最小値、最大値取得(外で取得すると一番最後のboxの値を取得してしまう)
+      var min = box.find('input').attr('min');
+      var max = box.find('input').attr('max');
       percent = (score - min) / (max - min) * 100;
-      scoreBox.find('.scoreBox_score_insert').css({
+      box.find('.scoreBox_score_insert').css({
         'left': percent + '%'
       });
     });
     //IE 11のときの挙動
     const ua = navigator.userAgent;
     if (ua.indexOf('Trident') !== -1) {
-      scoreBox.change(function () {
-        var score = scoreBox.find('input').val();
-        scoreBox.find('.js-score_score').text(score);
-        var min = scoreBox.find('input').attr('min');
-        var max = scoreBox.find('input').attr('max');
+      box.change(function () {
+        var score = box.find('input').val();
+        box.find('.js-score_score').text(score);
+        var min = box.find('input').attr('min');
+        var max = box.find('input').attr('max');
         percent = (score - min) / (max - min) * 100;
-        scoreBox.find('.scoreBox_score_insert').css({
+        box.find('.scoreBox_score_insert').css({
           'left': percent + '%'
         });
       });
     }
     //プラスをクリックした時
-    scoreBox.find('.js-plus').on('click', function () {
+    box.find('.js-plus').on('click', function () {
       //最小値、最大値取得(外で取得すると一番最後の値を取得してしまう)
-      var min = scoreBox.find('input').attr('min');
-      var max = scoreBox.find('input').attr('max');
+      var min = box.find('input').attr('min');
+      var max = box.find('input').attr('max');
       //スコアを取得
-      var score = scoreBox.find('input').val();
+      var score = box.find('input').val();
       //スコアを数列へ変換(+以外の算術演算子を使うと自動で数列になるのでマイナスの時は不要)
       var score = parseInt(score);
       var score_plus = score + 1;
       //スコア+1が最小値以上、最大値以下のとき
       if (score_plus >= min && score_plus <= max) {
         //スコアのテキスト書き換え
-        scoreBox.find('.js-score_score').text(score_plus);
+        box.find('.js-score_score').text(score_plus);
         //スコアの値を変更
-        scoreBox.find('input').val(score_plus);
+        box.find('input').val(score_plus);
         //「現在のレベル」の位置を再設定
         percent = (score_plus - min) / (max - min) * 100;
-        scoreBox.find('.scoreBox_score_insert').css({
+        box.find('.scoreBox_score_insert').css({
           'left': percent + '%'
         });
       }
     });
     //マイナスをクリックした時
-    scoreBox.find('.js-minus').on('click', function () {
+    box.find('.js-minus').on('click', function () {
       //最小値、最大値取得(外で取得すると一番最後の値を取得してしまう)
-      var min = scoreBox.find('input').attr('min');
-      var max = scoreBox.find('input').attr('max');
+      var min = box.find('input').attr('min');
+      var max = box.find('input').attr('max');
       //スコアを取得
-      var score = scoreBox.find('input').val();
+      var score = box.find('input').val();
       var score_minus = score - 1;
       //スコア-1が最小値以上、最大値以下のとき
       if (score_minus >= min && score_minus <= max) {
         //スコアのテキスト書き換え
-        scoreBox.find('.js-score_score').text(score_minus);
+        box.find('.js-score_score').text(score_minus);
         //スコアの値を変更
-        scoreBox.find('input').val(score_minus);
+        box.find('input').val(score_minus);
         //「現在のレベル」の位置を再設定
         percent = (score_minus - min) / (max - min) * 100;
-        scoreBox.find('.scoreBox_score_insert').css({
+        box.find('.scoreBox_score_insert').css({
           'left': percent + '%'
         });
       }
     });
   }
-  $('.js-scoreBox-a').each(function () {
-    var $this = $(this);
-    min = 0,
-      max = 100,
-      score = 23;
-    scoreSliderChange_A($this);
-  });
-
-  $('.js-scoreBox-b').each(function () {
-    var $this = $(this);
-    min = 0,
-      max = 100,
-      score = 40;
-    scoreSliderChange_A($this);
-  });
-
-  $('.js-scoreBox-c').each(function () {
-    var $this = $(this);
-    min = 20,
-      max = 80,
-      score = 59;
-    scoreSliderChange_A($this);
-  });
+  var slider = changeScoreSlider($('.js-scoreBox-a'), 0, 100, 23)
+  var slider = changeScoreSlider($('.js-scoreBox-b'), 0, 100, 40)
+  var slider = changeScoreSlider($('.js-scoreBox-c'), 20, 80, 59)
   //点数2
   //関数を用意
-  function scoreSliderChange(scoreBox) {
+  function changeScoreSlider_B(scoreBox) {
     //「現在のレベル」の位置を設定
     percent = (score - min) / (max - min) * 100;
     scoreBox.find('.rangeBox').find('.rangeContainer_box_label').css({
@@ -277,58 +369,72 @@ $(function () {
     min = 10, //最小値
       max = 50, //最大値
       score = 30; //点数
-    scoreSliderChange($this);
+    changeScoreSlider_B($this);
   });
   $('.js-scoreBox-e').each(function () {
     var $this = $(this);
     min = 5,
       max = 150,
       score = 40;
-    scoreSliderChange($this);
+    changeScoreSlider_B($this);
   });
   $('.js-scoreBox-f').each(function () {
     var $this = $(this);
     min = 20,
       max = 80,
       score = 40;
-    scoreSliderChange($this);
+    changeScoreSlider_B($this);
   });
   //教室使用率
-  //パーセンテージを求める(小数点以下切り捨て)
-  function calc_rate() {
+  // function changeSlider(countBox) {
+  //   //パーセンテージを求める(小数点以下切り捨て)
+  //   rate = Math.floor((count - min) / (max - min) * 100);
+  //   //htmlにテキスト追加
+  //   countBox.find('.count_min').text(min);
+  //   countBox.find('.count_max').text(max);
+  //   countBox.find('.count_count').text(count);
+  //   countBox.find('.count_rate').text(rate);
+  //   //inputの値変更
+  //   countBox.find('input').attr('min', min);
+  //   countBox.find('input').attr('max', max);
+  //   countBox.find('input').val(count);
+  // }
+  // //教室A
+  // $('.countBox_a').each(function () {
+  //   min = 0,
+  //     max = 200,
+  //     count = 199;
+  //   changeSlider($(this));
+  // });
+  // //教室B
+  // $('.countBox_b').each(function () {
+  //   min = 0,
+  //     max = 58,
+  //     count = 13;
+  //   changeSlider($(this));
+  // });
+  // var changeSlider = function (box, min, max, count) {
+  //   box.eash(function () {
+  //     changeSlider($(this));
+  //   });
+  // }
+  //関数を変数に入れる方法
+  //最小値0固定
+  var changeCountSlider = function (box, max, count) {
+    //パーセンテージを求める(小数点以下切り捨て)
     rate = Math.floor((count / max) * 100);
+    //htmlにテキスト追加
+    box.find('.count_min').text('0');
+    box.find('.count_max').text(max);
+    box.find('.count_count').text(count);
+    box.find('.count_rate').text(rate);
+    //inputの値変更
+    box.find('input').attr('min', 0);
+    box.find('input').attr('max', max);
+    box.find('input').val(count);
   }
-  //htmlにテキスト追加
-  function add_count_text(countBox) {
-    countBox.find('.count_min').text(min);
-    countBox.find('.count_max').text(max);
-    countBox.find('.count_count').text(count);
-    countBox.find('.count_rate').text(rate);
-  }
-  //inputの値変更
-  function chenge_count_val(countBox) {
-    countBox.find('input').attr('min', min);
-    countBox.find('input').attr('max', max);
-    countBox.find('input').val(count);
-  }
-  //教室A
-  $('.countBox_a').each(function () {
-    min = 0,
-      max = 200,
-      count = 199;
-    calc_rate();
-    add_count_text($(this));
-    chenge_count_val($(this));
-  });
-  //教室B
-  $('.countBox_b').each(function () {
-    min = 0,
-      max = 58,
-      count = 13;
-    calc_rate();
-    add_count_text($(this));
-    chenge_count_val($(this));
-  });
+  var slider = changeCountSlider($('.countBox-a'), 100, 80)//教室A(一番親のクラス名,最大の人数,現在の人数)
+  var slider = changeCountSlider($('.countBox-b'), 100, 20)//教室B
   ///////////////////////////////////////chart.js///////////////////////////////////////
   var ctx = document.getElementById('ex_chart');
   var data = {

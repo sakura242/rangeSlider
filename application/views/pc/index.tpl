@@ -18,8 +18,6 @@
           <p class="time_days">経過日数<span id="val_days"></span></p>
           <p class="time_term">期間<span id="val_term"></span></p>
         </div>
-
-
         <!-- 点数最大最小可変_1 -->
         <!-- A -->
         <div class="scoreBox js-scoreBox-a">
@@ -138,7 +136,7 @@
 
 
         <!-- 使用率 -->
-        <div class="countBox_a">
+        <div class="countBox-a">
           <p>教室A</p>
           <input type="range" min="" max="" value="" step="" class="" id="" class="" disabled>
           <p>最小<span class="count_min"></span>人</p>
@@ -146,7 +144,7 @@
           <p>最大<span class="count_max"></span>人</p>
           <p>使用率<span class="count_rate"></span>%</p>
         </div>
-        <div class="countBox_b">
+        <div class="countBox-b">
           <p>教室B</p>
           <input type="range" min="" max="" value="" step="" class="" id="" class="" disabled>
           <p>最小<span class="count_min"></span>人</p>
